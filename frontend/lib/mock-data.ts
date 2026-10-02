@@ -1,0 +1,85 @@
+import type { Interview, Profile, User } from "@/types"
+
+export const mockUser: User = {
+  id: "usr-001",
+  name: "Aarav Sharma",
+  email: "aarav.sharma@example.com",
+  streak: 12,
+}
+
+export const mockInterviews: Interview[] = [
+  {
+    id: "itv-1024",
+    title: "Frontend Engineer — React",
+    type: "technical",
+    score: 92,
+    date: "2026-07-24",
+    status: "completed",
+    questionCount: 12,
+    durationMins: 45,
+  },
+  {
+    id: "itv-1023",
+    title: "Behavioural & Culture Fit",
+    type: "hr",
+    score: 88,
+    date: "2026-07-22",
+    status: "completed",
+    questionCount: 8,
+    durationMins: 30,
+  },
+  {
+    id: "itv-1022",
+    title: "Quantitative Aptitude Set 4",
+    type: "aptitude",
+    score: 76,
+    date: "2026-07-20",
+    status: "completed",
+    questionCount: 20,
+    durationMins: 40,
+  },
+  {
+    id: "itv-1021",
+    title: "System Design Fundamentals",
+    type: "technical",
+    score: null,
+    date: "2026-07-29",
+    status: "in-progress",
+    questionCount: 6,
+    durationMins: 60,
+  },
+  {
+    id: "itv-1020",
+    title: "Leadership & Ownership",
+    type: "hr",
+    score: null,
+    date: "2026-08-02",
+    status: "scheduled",
+    questionCount: 8,
+    durationMins: 30,
+  },
+  {
+    id: "itv-1019",
+    title: "Logical Reasoning Drill",
+    type: "aptitude",
+    score: 84,
+    date: "2026-07-16",
+    status: "completed",
+    questionCount: 15,
+    durationMins: 35,
+  },
+]
+
+export const mockProfile: Profile = {
+  id: "usr-001",
+  name: "Aarav Sharma",
+  email: "aarav.sharma@example.com",
+  college: "Indian Institute of Technology, Delhi",
+  branch: "Computer Science & Engineering",
+  graduationYear: 2026,
+  skills: ["React", "TypeScript", "Node.js", "System Design", "Data Structures", "SQL"],
+  github: "github.com/aaravsharma",
+  linkedin: "linkedin.com/in/aaravsharma",
+  bio: "Final-year CS student passionate about building delightful web experiences and preparing hard for product-based company interviews.",
+  resumeName: "aarav-sharma-resume.pdf",
+}

@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env*.local
+
+# Next.js
+.next/
+
+# Vercel
+.vercel/
+
+# v0
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+
+# OS
+.DS_Store

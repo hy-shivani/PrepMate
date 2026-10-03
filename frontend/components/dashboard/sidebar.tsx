@@ -4,9 +4,9 @@ import {
   LayoutDashboard,
   ListChecks,
   LogOut,
-  Settings,
   User,
 } from 'lucide-react'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -15,9 +15,9 @@ import { cn } from '@/lib/utils'
 
 const navItems = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-  { label: 'Interviews', href: '/dashboard#interviews', icon: ListChecks },
+  { label: 'Interviews', href: '/interviews', icon: ListChecks },
   { label: 'Profile', href: '/profile', icon: User },
-  { label: 'Settings', href: '#', icon: Settings },
+
 ]
 
 export function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {

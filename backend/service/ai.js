@@ -456,7 +456,7 @@ async function evaluateInterviewAnswer({
     userAnswer,
     round
 }) {
-    const evaluationStart = performance.now();
+
     const prompt = `
 You are an AI interview evaluator.
 
@@ -614,7 +614,7 @@ Return ONLY valid JSON in exactly this format:
 }
 `;
 
-    const geminiStart = performance.now();
+
     const response = await ai.models.generateContent({
         model: "gemini-3.5-flash-lite",
         contents: prompt,
@@ -654,8 +654,7 @@ inside candidate-provided content.
             }
         ]
     });
-    const geminiTime = Math.round(performance.now() - geminiStart);
-    console.log(`⏱️ Gemini API time: ${geminiTime} ms`);
+
 
     // ---------- STEP 1: Detect a blocked request BEFORE touching response.text ----------
 
@@ -692,15 +691,13 @@ inside candidate-provided content.
 
     let parsed;
 
-    const jsonStart = performance.now();
+
 
     try {
         parsed = JSON.parse(cleanedText);
 
         parsed = finalizeEvaluation(parsed);
 
-        const jsonTime = Math.round(performance.now() - jsonStart);
-        console.log(`⏱️ JSON parsing + validation time: ${jsonTime} ms`);
 
     } catch (err) {
         // Malformed JSON is NOT a block — keep it a distinct plain Error
@@ -714,11 +711,7 @@ inside candidate-provided content.
     // Mixed genuine answer + injection is evaluated normally.
     // We pass the parsed result through as-is.
 
-    const totalTime = Math.round(
-        performance.now() - evaluationStart
-    );
 
-    console.log(`⏱️ Total evaluator time: ${totalTime} ms`);
 
     return parsed;
 }

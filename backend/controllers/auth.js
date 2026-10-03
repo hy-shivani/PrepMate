@@ -30,8 +30,11 @@ async function handleLogin(req, res) {
     //jwt
 
     const token = setUser(user);
-    res.cookie("uid", token);
-
+    res.cookie("uid", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+    });
     res.send("logged in successfuly");
 
     //redirect to dashboard

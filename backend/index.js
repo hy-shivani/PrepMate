@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 //Allows a frontend from one origin (domain/port) to access a backend on another origin
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL,
     credentials: true
 }));
 

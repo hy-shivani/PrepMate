@@ -95,10 +95,13 @@ export default function ReportPage() {
             interview?.scores?.hr ||
             0;
     }
-
-    // Interview scores are stored on a 0–10 scale.
-    // Convert to percentage only for display.
-    if (score > 0 && score <= 10) {
+    // Aptitude scores are already percentages (0–100).
+    // Technical and HR scores use a 0–10 scale.
+    if (
+        interview?.interviewMode !== "Aptitude" &&
+        score > 0 &&
+        score <= 10
+    ) {
         score = score * 10;
     }
 

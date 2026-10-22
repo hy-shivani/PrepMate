@@ -543,7 +543,11 @@ function CompletionView({
 
             {result?.score !== undefined && (
                 <p className="mt-5 text-3xl font-semibold">
-                    Score: {Math.round(result.score * 10)}%
+                    Score: {Math.round(
+                        Math.min(100, Math.max(0, Number(result.score) <= 10
+                            ? Number(result.score) * 10
+                            : Number(result.score)))
+                    )}%
                 </p>
             )}
 
@@ -603,7 +607,11 @@ function ReportView({
                                 Overall Score
                             </p>
                             <p className="text-3xl font-bold">
-                                {Math.round(result.score * 10)}%
+                                {Math.round(
+                                    Math.min(100, Math.max(0, Number(result.score) <= 10
+                                        ? Number(result.score) * 10
+                                        : Number(result.score)))
+                                )}%
                             </p>
                         </div>
                     </div>

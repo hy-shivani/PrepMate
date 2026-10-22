@@ -142,15 +142,23 @@ export default function InterviewsPage() {
                     </TableCell>
 
                     <TableCell>
+
                       <ScoreText
                         score={Math.round(
-                          (interview.interviewMode === "Technical"
-                            ? interview.scores.technical
-                            : interview.interviewMode === "HR"
-                              ? interview.scores.hr
-                              : interview.scores.aptitude) * 10
+                          Math.min(
+                            100,
+                            Math.max(
+                              0,
+                              interview.interviewMode === "Technical"
+                                ? interview.scores.technical * 10
+                                : interview.interviewMode === "HR"
+                                  ? interview.scores.hr * 10
+                                  : interview.scores.aptitude
+                            )
+                          )
                         )}
                       />
+
                     </TableCell>
 
                     <TableCell>

@@ -21,20 +21,22 @@ async function handleDashboard(req, res) {
         let bestScore = 0;
         let totalScore = 0;
 
-        for (let interview of interviews) {
-            const score =
-                interview.scores.overall ||
-                interview.scores.technical ||
-                interview.scores.hr ||
-                interview.scores.aptitude ||
-                0;
 
-            if (score > bestScore) {
-                bestScore = score;
+        for (const interview of interviews) {
+            let score = 0;
+
+            if (interview.interviewMode === "Aptitude") {
+                score = interview.scores.aptitude ?? 0;
+            } else if (interview.interviewMode === "Technical") {
+                score = interview.scores.technical ?? 0;
+            } else if (interview.interviewMode === "HR") {
+                score = interview.scores.hr ?? 0;
             }
 
+            bestScore = Math.max(bestScore, score);
             totalScore += score;
         }
+
         let averageScore = 0;
 
         if (totalInterviews > 0) {

@@ -65,7 +65,7 @@ export default function DashboardPage() {
         <Reveal delay={0.1}>
           <StatCard
             label="Average Score"
-            value={`${Math.round(dashboard.averageScore * 10)}%`}
+            value={`${Math.round(dashboard.averageScore)}%`}
             icon={TrendingUp}
             accent="cyan"
           />
@@ -74,7 +74,7 @@ export default function DashboardPage() {
         <Reveal delay={0.15}>
           <StatCard
             label="Best Score"
-            value={`${Math.round(dashboard.bestScore * 10)}%`}
+            value={`${Math.round(dashboard.bestScore)}%`}
             icon={Trophy}
             accent="indigo"
           />

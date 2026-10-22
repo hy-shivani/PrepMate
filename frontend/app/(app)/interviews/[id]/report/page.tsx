@@ -86,34 +86,23 @@ export default function ReportPage() {
         );
     }
 
-    let score = interview?.scores?.overall || 0;
+    const items = report?.questionWiseFeedback ?? [];
 
-    if (!score) {
-        score =
-            interview?.scores?.aptitude ||
-            interview?.scores?.technical ||
-            interview?.scores?.hr ||
-            0;
-    }
-    // Aptitude scores are already percentages (0–100).
-    // Technical and HR scores use a 0–10 scale.
-    if (
-        interview?.interviewMode !== "Aptitude" &&
-        score > 0 &&
-        score <= 10
-    ) {
-        score = score * 10;
-    }
+    let score = 0;
 
-    if (!score && report?.questionWiseFeedback?.length) {
-        const correct = report.questionWiseFeedback.filter(
+    if (interview?.interviewMode === "Aptitude" && items.length > 0) {
+        const correct = items.filter(
             (item: any) => item.isCorrect === true
         ).length;
 
-        score =
-            (correct / report.questionWiseFeedback.length) * 100;
+        score = (correct / items.length) * 100;
+    } else if (interview?.interviewMode === "Technical") {
+        score = (interview?.scores?.technical ?? 0) * 10;
+    } else if (interview?.interviewMode === "HR") {
+        score = (interview?.scores?.hr ?? 0) * 10;
     }
 
+    score = Math.min(100, Math.max(0, score));
     return (
         <section className="mx-auto max-w-4xl">
             <button

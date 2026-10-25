@@ -17,7 +17,8 @@ The platform generates interview questions grounded in an uploaded resume, evalu
 - [Screenshots](#screenshots)
 - [How It Works](#how-it-works)
 - [Tech Stack](#tech-stack)
-- [Architecture](#architecture)
+- [System Architecture](#system-architecture)
+- [Component Overview](#component-overview)
 - [AI Evaluation and Benchmarking](#ai-evaluation-and-benchmarking)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
@@ -127,6 +128,7 @@ The final report summarizes interview performance, highlights strengths, and ide
 The following diagram illustrates PrepMate's architecture, including the frontend, backend, AI evaluation, database, resume storage, and interview workflow.
 
 ![PrepMate System Architecture](docs/architecture.png)
+
 ---
 
 ## Tech Stack
@@ -145,7 +147,7 @@ The following diagram illustrates PrepMate's architecture, including the fronten
 
 ---
 
-## Architecture
+## Component Overview
 
 PrepMate follows a frontend-backend architecture with a separate AI service layer.
 
@@ -269,7 +271,6 @@ These figures describe only the tested cases; they do not establish that the sys
 
 ## Project Structure
 
-The following is a high-level view of the repository. Exact filenames may vary with the current implementation.
 
 ```text
 PrepMate/
@@ -292,6 +293,7 @@ PrepMate/
 │   ├── dashboard.png
 │   ├── interview.png
 │   ├── feedback.png
+│   ├── architecture.png
 │   └── report.png
 └── README.md
 ```
@@ -305,7 +307,6 @@ PrepMate/
 Make sure you have the following installed or configured:
 
 - Node.js and npm
-- pnpm
 - MongoDB Atlas or a local MongoDB instance
 - A Google Gemini API key
 - A Cloudinary account for resume storage
@@ -349,7 +350,7 @@ Start the backend and frontend using the commands in the sections below.
 
 ### Backend — `backend/.env`
 
-Configure the variables required by your backend:
+Never commit `.env` or `.env.local` files, API keys, database credentials, or JWT secrets.
 
 ```env
 PORT=8888
@@ -370,7 +371,6 @@ FRONTEND_URL=http://localhost:3000
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8888
 ```
 
-**Important:** Confirm the variable names against the current backend and frontend source code before running the application. Never commit `.env` or `.env.local` files, API keys, database credentials, JWT secrets, or other private credentials.
 
 ---
 
@@ -384,14 +384,14 @@ From the `backend/` directory:
 npm start
 ```
 
-The backend should start on the configured port, which is `5000` in the example environment configuration.
+The backend starts on port `8888` with the example configuration above.
 
 ### Start the Frontend
 
 From the `frontend/` directory:
 
 ```bash
-npm dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -399,7 +399,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### Build the Frontend
 
 ```bash
-npm build
+npm run build
 ```
 
 To start the production frontend build:
@@ -422,7 +422,7 @@ node evaluation/runBenchmark.js
 node evaluation/results/compareBenchmark.js
 ```
 
-The benchmark runner and comparison script depend on the files and configuration present in the repository. Ensure any required API keys and test data are configured before running them.
+ A valid `GEMINI_API_KEY` must be set in `backend/.env` before running the benchmark.
 
 Do not commit private API keys or sensitive candidate data alongside benchmark results.
 
@@ -482,7 +482,6 @@ Potential next steps for PrepMate include:
 - Improve score consistency across different answer styles.
 - Investigate high p95 latency and add robust retry and timeout handling.
 - Add more detailed interview analytics and progress tracking.
-- Improve accessibility and browser support for voice input.
 - Add automated tests for critical frontend and backend flows.
 - Improve deployment monitoring and operational error reporting.
 
